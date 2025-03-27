@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>圆狩精品账户 - 专业社交账号供应商</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 15px;
+        }
+        .top {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            background-color: #0088cc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .merchant, .notice, .choose {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .merchant .title, .choose .title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .flex {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .flex .name {
+            width: 100px;
+            color: #666;
+        }
+        .notice {
+            display: flex;
+            align-items: center;
+        }
+        .icon-notice {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            background-color: #0088cc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+        .gg {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .item {
+            margin-bottom: 15px;
+        }
+        .item .name {
+            margin-bottom: 5px;
+            color: #666;
+        }
+        select, input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .value {
+            display: flex;
+            align-items: center;
+        }
+        .sub, .add {
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .sub:hover, .add:hover {
+            background-color: #ddd;
+        }
+        .num {
+            margin: 0 10px;
+            min-width: 30px;
+            text-align: center;
+        }
+        .radio {
+            display: inline-block;
+            margin-right: 5px;
+        }
+        label {
+            margin-right: 15px;
+        }
+        .order {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .total {
+            display: flex;
+            align-items: center;
+        }
+        .price {
+            margin-left: 10px;
+            font-weight: bold;
+            color: #f56c6c;
+        }
+        .place {
+            background-color: #0088cc;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .place:hover {
+            background-color: #0077bb;
+        }
+        a {
+            color: #0088cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .price-display {
+            padding: 5px 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div class="logo">圆</div>
+        <span class="title">圆狩精品账户</span>
+    </div>
+    
+    <div class="merchant">
+        <div class="title">商户信息</div>
+        <div class="flex merchant">
+            <div class="name">商户名称</div>
+            <div class="info">圆狩精品账户</div>
+        </div>
+        <div class="flex service">
+            <div class="name">Telegram客服</div>
+            <a href="https://t.me/yuanshou666_bot" class="info">@yuanshou666_bot</a>
+        </div>
+    </div>
+    
+    <div class="notice">
+        <div class="lf">
+            <div class="icon-notice">!</div>
+            <div class="gg">公告</div>
+        </div>
+        <div class="info">所有商品下单前请先少量购买测试，使用USDT收款，拍下之后通过邮箱自动发货，售后请联系Telegram客服。</div>
+    </div>
+    
+    <div class="choose">
+        <div class="title">选择商品</div>
+        <div class="item">
+            <div class="name" required>商品分类</div>
+            <div class="value verify">
+                <select name="classify" id="classify" onchange="chooseClassify(this.value)">
+                    <option value="">请选择分类</option>
+                    <option value="tg">TG飞机号</option>
+                    <option value="kakao">Kakao账号</option>
+                    <option value="whatsapp">WhatsApp账号</option>
+                    <option value="line">Line账号</option>
+                    <option value="tk">TK海外抖音</option>
+                    <option value="tinder">Tinder火种账号</option>
+                    <option value="ins">Instagram账号</option>
+                    <option value="twitter">Twitter/X账号</option>
+                    <option value="hinge">Hinge账号</option>
+                    <option value="apple">Apple ID</option>
+                    <option value="gmail">Google Gmail账号</option>
+                    <option value="fb">FB/Facebook账号</option>
+                </select>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name" required>商品名称</div>
+            <div class="value verify">
+                <select name="product" id="productName" onchange="chooseProduct(this.value)">
+                    <option value="">请先选择分类</option>
+                </select>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name" required>选择国家</div>
+            <div class="value verify">
+                <select name="country" id="country" onchange="chooseCountry(this.value)">
+                    <option value="">请先选择商品</option>
+                </select>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name">商品单价</div>
+            <div class="value">
+                <div class="price-display" id="unitPrice">-</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name">商品库存</div>
+            <div class="value">
+                <div class="sub" onclick="changeStock(-1)">-</div>
+                <div class="num" id="stock">-</div>
+                <div class="add" onclick="changeStock(1)">+</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name" required>购买数量</div>
+            <div class="value">
+                <div class="sub" onclick="changeNum(-1)">-</div>
+                <div class="num" id="quantity">1</div>
+                <div class="add" onclick="changeNum(1)">+</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name">指定性别</div>
+            <div class="value">
+                <div class="radio">
+                    <input type="radio" name="sex" value="0" id="rng" checked />
+                </div>
+                <label for="rng">随机</label>
+                <div class="radio">
+                    <input type="radio" name="sex" value="1" class="radio" id="man" />
+                </div>
+                <label for="man">男</label>
+                <div class="radio">
+                    <input type="radio" name="sex" value="2" class="radio" id="women" />
+                </div>
+                <label for="women">女</label>
+            </div>
+        </div>
+        <div class="item email-item">
+            <div class="name" required>邮箱</div>
+            <div class="value">
+                <input type="email" class="email" id="emailEl" placeholder="下单后系统自动发送卡密到该邮箱" />
+            </div>
+        </div>
+        
+        <div class="order">
+            <div class="total">
+                <div class="text">总金额</div>
+                <div class="price">
+                    <span class="num" id="total">0.00</span>
+                    USDT
+                </div>
+            </div>
+            <div class="place" onclick="goPay()">立即下单</div>
+        </div>
+    </div>
+
+    <script>
+        // 全球前100个最发达国家列表（按发达程度从高到低排序）
+        const top100Countries = [
+            {name: "瑞士", rank: 1}, {name: "挪威", rank: 2}, {name: "冰岛", rank: 3}, 
+            {name: "丹麦", rank: 4}, {name: "瑞典", rank: 5}, {name: "芬兰", rank: 6}, 
+            {name: "荷兰", rank: 7}, {name: "德国", rank: 8}, {name: "奥地利", rank: 9}, 
+            {name: "比利时", rank: 10}, {name: "卢森堡", rank: 11}, {name: "英国", rank: 12}, 
+            {name: "爱尔兰", rank: 13}, {name: "法国", rank: 14}, {name: "意大利", rank: 15}, 
+            {name: "西班牙", rank: 16}, {name: "葡萄牙", rank: 17}, {name: "希腊", rank: 18}, 
+            {name: "马耳他", rank: 19}, {name: "捷克", rank: 20}, {name: "斯洛伐克", rank: 21}, 
+            {name: "斯洛文尼亚", rank: 22}, {name: "爱沙尼亚", rank: 23}, {name: "拉脱维亚", rank: 24}, 
+            {name: "立陶宛", rank: 25}, {name: "波兰", rank: 26}, {name: "匈牙利", rank: 27}, 
+            {name: "克罗地亚", rank: 28}, {name: "罗马尼亚", rank: 29}, {name: "保加利亚", rank: 30},
+            {name: "美国", rank: 31}, {name: "加拿大", rank: 32}, {name: "澳大利亚", rank: 33}, 
+            {name: "新西兰", rank: 34}, {name: "日本", rank: 35}, {name: "韩国", rank: 36}, 
+            {name: "新加坡", rank: 37}, {name: "以色列", rank: 38}, {name: "阿联酋", rank: 39}, 
+            {name: "卡塔尔", rank: 40}, {name: "沙特阿拉伯", rank: 41}, {name: "科威特", rank: 42}, 
+            {name: "巴林", rank: 43}, {name: "阿曼", rank: 44}, {name: "文莱", rank: 45}, 
+            {name: "马来西亚", rank: 46}, {name: "泰国", rank: 47}, {name: "中国", rank: 48}, 
+            {name: "中国香港", rank: 49}, {name: "中国澳门", rank: 50}, {name: "中国台湾", rank: 51}, 
+            {name: "俄罗斯", rank: 52}, {name: "巴西", rank: 53}, {name: "阿根廷", rank: 54}, 
+            {name: "智利", rank: 55}, {name: "乌拉圭", rank: 56}, {name: "墨西哥", rank: 57}, 
+            {name: "哥斯达黎加", rank: 58}, {name: "巴拿马", rank: 59}, {name: "哥伦比亚", rank: 60},
+            {name: "秘鲁", rank: 61}, {name: "南非", rank: 62}, {name: "博茨瓦纳", rank: 63}, 
+            {name: "纳米比亚", rank: 64}, {name: "毛里求斯", rank: 65}, {name: "塞舌尔", rank: 66}, 
+            {name: "土耳其", rank: 67}, {name: "哈萨克斯坦", rank: 68}, {name: "阿塞拜疆", rank: 69}, 
+            {name: "亚美尼亚", rank: 70}, {name: "格鲁吉亚", rank: 71}, {name: "乌克兰", rank: 72}, 
+            {name: "白俄罗斯", rank: 73}, {name: "摩尔多瓦", rank: 74}, {name: "塞尔维亚", rank: 75}, 
+            {name: "黑山", rank: 76}, {name: "北马其顿", rank: 77}, {name: "阿尔巴尼亚", rank: 78}, 
+            {name: "波黑", rank: 79}, {name: "科索沃", rank: 80}, {name: "塞浦路斯", rank: 81}, 
+            {name: "黎巴嫩", rank: 82}, {name: "约旦", rank: 83}, {name: "巴勒斯坦", rank: 84}, 
+            {name: "伊拉克", rank: 85}, {name: "伊朗", rank: 86}, {name: "印度", rank: 87}, 
+            {name: "巴基斯坦", rank: 88}, {name: "孟加拉国", rank: 89}, {name: "斯里兰卡", rank: 90},
+            {name: "尼泊尔", rank: 91}, {name: "不丹", rank: 92}, {name: "马尔代夫", rank: 93}, 
+            {name: "菲律宾", rank: 94}, {name: "越南", rank: 95}, {name: "柬埔寨", rank: 96}, 
+            {name: "老挝", rank: 97}, {name: "缅甸", rank: 98}, {name: "印度尼西亚", rank: 99}, 
+            {name: "东帝汶", rank: 100}
+        ];
+
+        // 生成80-150的随机库存数
+        function getRandomStock() {
+            return Math.floor(Math.random() * 71) + 80; // 80-150
+        }
+
+        // 根据国家排名计算价格调整系数
+        function getPriceAdjustment(rank) {
+            // 基础降价比例 (5%-10%)
+            const baseReduction = 0.07; // 平均7%
+            // 排名越高(数字越小)的国家降价越少
+            return 1 - (baseReduction * (rank / 100));
+        }
+
+        // 商品数据 - 圆狩精品账户
+        const products = {
+            tg: [
+                {name: "TG飞机直登号", basePrice: 2.10, stock: getRandomStock()},
+                {name: "TG飞机协议号 sessions格式", basePrice: 2.50, stock: getRandomStock()},
+                {name: "TG飞机耐用老号一年以上", basePrice: 3.00, stock: getRandomStock()},
+                {name: "TG飞机会员【一个月】", basePrice: 6.00, stock: getRandomStock()},
+                {name: "TG飞机会员【12个月】", basePrice: 32.00, stock: getRandomStock()},
+                {name: "TG飞机会员【6个月】", basePrice: 22.63, stock: getRandomStock()},
+                {name: "TG飞机会员【3个月】", basePrice: 11.50, stock: getRandomStock()},
+                {name: "Tg匿名+888号码", basePrice: 55.04, stock: getRandomStock()}
+            ],
+            kakao: [
+                {name: "kakao/kakaotalk账号（未实名）", basePrice: 2.12, stock: getRandomStock()},
+                {name: "kakao/kakaotalk账号（已实名）", basePrice: 4.62, stock: getRandomStock()},
+                {name: "KAKAO黑卡号", basePrice: 31.80, stock: getRandomStock()},
+                {name: "KAKAO黑卡老号", basePrice: 60.00, stock: getRandomStock()},
+                {name: "企业KAKA0号", basePrice: 311.00, stock: getRandomStock()}
+            ],
+            whatsapp: [
+                {name: "WhatsApp直登新号", basePrice: 5.15, stock: getRandomStock()},
+                {name: "WhatsApp直登号【满月号】", basePrice: 13.31, stock: getRandomStock()},
+                {name: "WhatsApp直登号【3-6月】", basePrice: 17.32, stock: getRandomStock()},
+                {name: "WhatsApp直登号【一年以上】", basePrice: 27.61, stock: getRandomStock()},
+                {name: "WhatsApp可解封号", basePrice: 30.93, stock: getRandomStock()},
+                {name: "企业号/商业协议号/business号（接粉专用）", basePrice: 37.09, stock: getRandomStock()},
+                {name: "whatsapp协议号（打粉专用）", basePrice: 40.89, stock: getRandomStock()}
+            ],
+            line: [
+                {name: "LINE濑账号 直登号", basePrice: 12.43, stock: getRandomStock()},
+                {name: "LINE濑账号【满月】直登号", basePrice: 18.33, stock: getRandomStock()},
+                {name: "LINE濑账号【3-6个月】直登号", basePrice: 25.00, stock: getRandomStock()},
+                {name: "LINE濑账号【一年老号】直登号", basePrice: 35.00, stock: getRandomStock()}
+            ],
+            tk: [
+                {name: "TIKTOK协议号/ios全参号/token/三绑号", basePrice: 3.00, stock: getRandomStock()},
+                {name: "Tik Tok全新白号 手动号", basePrice: 5.00, stock: getRandomStock()},
+                {name: "TikTok百粉【活人粉丝】", basePrice: 12.01, stock: getRandomStock()},
+                {name: "TikTok千粉【活人粉丝】", basePrice: 21.23, stock: getRandomStock()},
+                {name: "TikTok万粉【活人粉丝】", basePrice: 100.00, stock: getRandomStock()}
+            ],
+            tinder: [
+                {name: "Tinder火种成品号（蓝V）", basePrice: 14.00, stock: getRandomStock()}
+            ],
+            ins: [
+                {name: "INS-照片墙-Instagram】小白号", basePrice: 5.00, stock: getRandomStock()},
+                {name: "INS-照片墙-Instagram】2016-2020年注册--无粉", basePrice: 13.00, stock: getRandomStock()},
+                {name: "INS-照片墙-Instagram】2016-2020年注册--带1000粉丝", basePrice: 80.00, stock: getRandomStock()},
+                {name: "INS-照片墙-Instagram】2016-2020年注册--带5000粉丝", basePrice: 150.00, stock: getRandomStock()},
+                {name: "INS-照片墙-Instagram】2016-2020年注册--带10000粉丝", basePrice: 300.00, stock: getRandomStock()},
+                {name: "INS-照片墙-Instagram】精品号--风景号--汽车-宠物等等优质老帖子--联系客服自选", basePrice: 200.00, stock: getRandomStock()}
+            ],
+            twitter: [
+                {name: "推特小白号", basePrice: 7.00, stock: getRandomStock()},
+                {name: "推特老号2009-2019---无粉丝", basePrice:10.55 , stock: getRandomStock()},
+                {name: "推特老号2009-2019----带100粉", basePrice: 16.33, stock: getRandomStock()},
+                {name: "推特老号2009-2019注册--带1000粉丝", basePrice: 20.58, stock: getRandomStock()},
+                {name: "推特老号2009-2015注册--带2000粉丝", basePrice: 26.40, stock: getRandomStock()},
+                {name: "推特老号2009-2019注册--带5000粉丝", basePrice: 30.01, stock: getRandomStock()},
+                {name: "推特开发者账号", basePrice: 35.88, stock: getRandomStock()},
+                {name: "推特老号2009-2019注册--带1万粉丝", basePrice: 39.31, stock: getRandomStock()},
+                {name: "推特老号2009-2019----带100粉（蓝V号）", basePrice: 77.30, stock: getRandomStock()},
+                {name: "推特老号2009-2019----带1000粉（蓝V号）", basePrice: 91.32, stock: getRandomStock()},
+                {name: "推特老号2009-2015注册--带2000粉丝（蓝V号）", basePrice: 100.00, stock: getRandomStock()}
+            ],
+            hinge: [
+                {name: "Hinge账号 新号", basePrice: 5.00, stock: getRandomStock()},
+                {name: "Hinge账号【满月号】", basePrice: 8.00, stock: getRandomStock()},
+                {name: "Hinge账号【半年号】", basePrice: 12.70, stock: getRandomStock()}
+            ],
+            apple: [
+                {name: "Shadowrocket小火箭 共享", basePrice: 1.00, stock: getRandomStock()},
+                {name: "苹果ID购买独享【带密保】【未激活icloud】【1-3个月】", basePrice: 13.11, stock: getRandomStock()},
+                {name: "苹果ID购买独享【带密保】【已激活icloud】【1-3个月】", basePrice: 16.42, stock: getRandomStock()}
+            ],
+            gmail: [
+                {name: "gmail邮箱 新号", basePrice: 2.00, stock: getRandomStock()},
+                {name: "gmail邮箱 耐用老号", basePrice: 5.00, stock: getRandomStock()}
+            ],
+            fb: [
+                {name: "FB混大小黑＋商城或个人户（包8成登录率）＋带cookie", basePrice: 5.80, stock: getRandomStock()},
+                {name: "稳定耐用老号2013-2018", basePrice: 7.40, stock: getRandomStock()},
+                {name: "facebook新号", basePrice: 2.00, stock: getRandomStock()},
+                {name: "Marketpace商城号", basePrice: 13.72, stock: getRandomStock()},
+                {name: "推荐购买---FB三解号--广告户活", basePrice: 22.83, stock: getRandomStock()},
+                {name: "FB复审解限号--可复审", basePrice: 22.90, stock: getRandomStock()},
+                {name: "主页/BM--带解限恢复绿标", basePrice: 29.06, stock: getRandomStock()},
+                {name: "FB,1拖5广告户--每个50$额度", basePrice: 28.03, stock: getRandomStock()},
+                {name: "二解支付宝广告号--可支付宝充值", basePrice: 23.10, stock: getRandomStock()},
+                {name: "FB三次解限号---个人广告账户活---带广告误判恢复绿标", basePrice: 20.72, stock: getRandomStock()},
+                {name: "FB不死号-包首登无其他售后", basePrice: 10.00, stock: getRandomStock()},
+                {name: "2022年BM链接---包进入", basePrice: 15.00, stock: getRandomStock()},
+                {name: "BM正常---无其他售后", basePrice: 12.00, stock: getRandomStock()},
+                {name: "2021年BM链接---包进入BM正常—--无其他售后", basePrice: 18.00, stock: getRandomStock()},
+                {name: "20年-18年BM链接--包进入BM正常无售后--购买后联系客服", basePrice: 25.00, stock: getRandomStock()},
+                {name: "老BM可分享链接---包进入BM正常---无其他售后", basePrice: 20.00, stock: getRandomStock()},
+                {name: "Facebook---老主页—--可修主页名称---人工授权后无售后", basePrice: 10.00, stock: getRandomStock()},
+                {name: "Facebook---精品主页带粉丝", basePrice: 28.88, stock: getRandomStock()},
+                {name: "Facebook 有缘（24小时售后包心动包人脸）", basePrice: 27.50, stock: getRandomStock()},
+                {name: "FB账单号（额度500）", basePrice: 40.00, stock: getRandomStock()},
+                {name: "FB账单号（额度1000）", basePrice: 75.00, stock: getRandomStock()},
+                {name: "FB账单号（额度300）", basePrice: 25.00, stock: getRandomStock()},
+                {name: "FB大黑＋商城或个人户（包8成登录率）＋带cookie", basePrice: 18.00, stock: getRandomStock()},
+                               {name: "ebuy店铺号", basePrice: 25.00, stock: getRandomStock()}
+            ]
+        };
+
+        // 当前选择的商品和国家
+        let currentProduct = null;
+        let currentCountry = null;
+        let currentAdjustedPrice = 0;
+
+        // 选择分类
+        function chooseClassify(value) {
+            const productSelect = document.getElementById('productName');
+            productSelect.innerHTML = '<option value="">请选择商品</option>';
+            
+            if (!value) return;
+            
+            products[value].forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.name;
+                option.textContent = product.name;
+                productSelect.appendChild(option);
+            });
+            
+            // 重置其他选项
+            document.getElementById('country').innerHTML = '<option value="">请先选择商品</option>';
+            document.getElementById('unitPrice').textContent = '-';
+            document.getElementById('stock').textContent = '-';
+            document.getElementById('total').textContent = '0.00';
+            currentProduct = null;
+            currentCountry = null;
+        }
+
+        // 选择商品
+        function chooseProduct(value) {
+            const classify = document.getElementById('classify').value;
+            const countrySelect = document.getElementById('country');
+            countrySelect.innerHTML = '<option value="">请选择国家</option>';
+            
+            if (!value || !classify) return;
+            
+            // 查找选中的商品
+            currentProduct = products[classify].find(p => p.name === value);
+            if (!currentProduct) return;
+            
+            // 更新国家选项
+            top100Countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.name;
+                option.textContent = country.name;
+                option.dataset.rank = country.rank;
+                countrySelect.appendChild(option);
+            });
+            
+            document.getElementById('stock').textContent = currentProduct.stock;
+            updateTotal();
+        }
+
+        // 选择国家
+        function chooseCountry(value) {
+            const countrySelect = document.getElementById('country');
+            const selectedOption = countrySelect.options[countrySelect.selectedIndex];
+            
+            if (!value || !selectedOption) {
+                currentCountry = null;
+                currentAdjustedPrice = 0;
+                document.getElementById('unitPrice').textContent = '-';
+                updateTotal();
+                return;
+            }
+            
+            currentCountry = {
+                name: value,
+                rank: parseInt(selectedOption.dataset.rank)
+            };
+            
+            // 计算调整后的价格
+            const adjustment = getPriceAdjustment(currentCountry.rank);
+            currentAdjustedPrice = currentProduct.basePrice * adjustment;
+            
+            document.getElementById('unitPrice').textContent = currentAdjustedPrice.toFixed(2) + ' USDT';
+            updateTotal();
+        }
+
+        // 改变数量
+        function changeNum(delta) {
+            const quantityEl = document.getElementById('quantity');
+            let quantity = parseInt(quantityEl.textContent) || 0;
+            quantity += delta;
+            if (quantity < 1) quantity = 1;
+            if (currentProduct && quantity > currentProduct.stock) {
+                quantity = currentProduct.stock;
+                alert('不能超过库存数量');
+            }
+            quantityEl.textContent = quantity;
+            updateTotal();
+        }
+
+        // 改变库存 (演示用)
+        function changeStock(delta) {
+            if (!currentProduct) return;
+            currentProduct.stock += delta;
+            if (currentProduct.stock < 0) currentProduct.stock = 0;
+            document.getElementById('stock').textContent = currentProduct.stock;
+            
+            // 如果当前数量超过新库存，调整数量
+            const quantity = parseInt(document.getElementById('quantity').textContent) || 0;
+            if (quantity > currentProduct.stock) {
+                document.getElementById('quantity').textContent = currentProduct.stock;
+                updateTotal();
+            }
+        }
+
+        // 更新总金额
+        function updateTotal() {
+            if (!currentProduct || !currentCountry) {
+                document.getElementById('total').textContent = '0.00';
+                return;
+            }
+            
+            const quantity = parseInt(document.getElementById('quantity').textContent) || 0;
+            const total = (currentAdjustedPrice * quantity).toFixed(2);
+            document.getElementById('total').textContent = total;
+        }
+
+        // 去支付 - 修改后的函数，添加URL参数
+        function goPay() {
+            const email = document.getElementById('emailEl').value;
+            if (!email || !email.includes('@')) {
+                alert('请输入有效的邮箱地址');
+                return;
+            }
+            
+            if (!currentProduct) {
+                alert('请选择商品');
+                return;
+            }
+            
+            if (!currentCountry) {
+                alert('请选择国家');
+                return;
+            }
+            
+            const quantity = document.getElementById('quantity').textContent;
+            const total = document.getElementById('total').textContent;
+            const sex = document.querySelector('input[name="sex"]:checked').value;
+            const sexText = getSexText(sex);
+            
+            // 构建URL参数
+            const params = new URLSearchParams();
+            params.append('product', encodeURIComponent(currentProduct.name));
+            params.append('country', encodeURIComponent(currentCountry.name));
+            params.append('quantity', quantity);
+            params.append('price', currentAdjustedPrice.toFixed(2));
+            params.append('total', total);
+            params.append('email', encodeURIComponent(email));
+            params.append('sex', sexText);
+            
+            // 跳转到支付页面并传递参数
+            window.location.href = `https://r22g421.github.io/tgweb/tgweb1.html?${params.toString()}`;
+        }
+
+        function getSexText(value) {
+            switch(value) {
+                case '1': return '男';
+                case '2': return '女';
+                default: return '随机';
+            }
+        }
+    </script>
+</body>
+</html>
