@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圆狩精品账户 - USDT支付</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0088cc;
+        }
+        .order-info {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .order-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .order-detail {
+            margin-bottom: 5px;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .wallet-options {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .wallet-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #0088cc;
+        }
+        .wallet-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .wallet-table tr {
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .wallet-table tr:last-child {
+            border-bottom: none;
+        }
+        .wallet-table td {
+            padding: 12px 0;
+        }
+        .wallet-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        .wallet-name {
+            font-weight: 500;
+        }
+        .wallet-desc {
+            color: #777;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        .pay-btn {
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .pay-btn:hover {
+            background-color: #0077bb;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">圆狩精品账户</div>
+    </div>
+    
+    <div class="order-info">
+        <div class="order-title">订单信息</div>
+        <div class="order-detail">订单号：<span id="order">BL113263199484</span></div>
+        <div class="order-detail">付款金额：<span class="highlight" id="price">0.00</span> USDT</div>
+        <div class="order-detail" style="color: #e74c3c; margin-top: 10px;">
+            请使用USDT(TRC20)进行支付，支付成功后系统将自动处理您的订单
+        </div>
+    </div>
+    
+    <div class="wallet-options">
+        <div class="wallet-title">选择钱包支付</div>
+        <table class="wallet-table">
+            <tr onclick="openWallet('imtoken')">
+                <td width="60"><img src="https://via.placeholder.com/40" class="wallet-img"></td>
+                <td>
+                    <div class="wallet-name">imToken钱包</div>
+                    <div class="wallet-desc">支持TRC20/ERC20/BEP20</div>
+                </td>
+            </tr>
+            <tr onclick="openWallet('tokenpocket')">
+                <td><img src="https://via.placeholder.com/40" class="wallet-img"></td>
+                <td>
+                    <div class="wallet-name">TokenPocket钱包</div>
+                    <div class="wallet-desc">支持TRC20/ERC20/BEP20</div>
+                </td>
+            </tr>
+            <tr onclick="openWallet('tronlink')">
+                <td><img src="https://via.placeholder.com/40" class="wallet-img"></td>
+                <td>
+                    <div class="wallet-name">TronLink钱包</div>
+                    <div class="wallet-desc">支持TRC20</div>
+                </td>
+            </tr>
+            <tr onclick="openWallet('metamask')">
+                <td><img src="https://via.placeholder.com/40" class="wallet-img"></td>
+                <td>
+                    <div class="wallet-name">MetaMask钱包</div>
+                    <div class="wallet-desc">支持ERC20</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <button class="pay-btn" onclick="manualPay()">手动输入钱包地址支付</button>
+
+    <script>
+        // 从URL获取订单参数
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+        
+        // 设置订单信息
+        function initOrder() {
+            const price = getQueryParam('price') || '0.00';
+            const orderId = getQueryParam('order') || 'BL' + Math.floor(Math.random() * 1000000000);
+            
+            document.getElementById('price').textContent = price;
+            document.getElementById('order').textContent = orderId;
+        }
+        
+        // 打开钱包应用
+        function openWallet(walletType) {
+            let url = '';
+            switch(walletType) {
+                case 'imtoken':
+                    url = `imtokenv2://navigate/DappView?url=${encodeURIComponent(window.location.href)}`;
+                    break;
+                case 'tokenpocket':
+                    url = `tpdapp://open?params={"url":"${encodeURIComponent(window.location.href)}"}`;
+                    break;
+                case 'tronlink':
+                    url = `tronlinkoutside://pull.activity?param=${encodeURIComponent(JSON.stringify({
+                        url: window.location.href,
+                        action: 'open',
+                        protocol: 'tronlink',
+                        version: '1.0'
+                    }))}`;
+                    break;
+                case 'metamask':
+                    url = `https://metamask.app.link/dapp/${window.location.href}`;
+                    break;
+            }
+            
+            window.location.href = url;
+            
+            // 如果跳转失败，显示提示
+            setTimeout(() => {
+                if (!document.hidden) {
+                    alert('请确保已安装对应的钱包应用，或使用手机浏览器访问此页面');
+                }
+            }, 1000);
+        }
+        
+        // 手动支付
+        function manualPay() {
+            const price = document.getElementById('price').textContent;
+            const address = 'TYx...xxx'; // 替换为您的USDT收款地址
+            
+            alert(`请向以下地址转账 ${price} USDT(TRC20):\n\n${address}\n\n转账完成后请联系客服确认`);
+        }
+        
+        // 初始化页面
+        window.onload = initOrder;
+    </script>
+</body>
+</html>
