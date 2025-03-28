@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>圆狩精品账户 - 专业社交账号供应商</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 15px;
+        }
+        .top {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            background-color: #0088cc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .merchant, .notice, .choose {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .merchant .title, .choose .title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .flex {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .flex .name {
+            width: 100px;
+            color: #666;
+        }
+        .notice {
+            display: flex;
+            align-items: center;
+        }
+        .icon-notice {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            background-color: #0088cc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+        .gg {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .item {
+            margin-bottom: 15px;
+        }
+        .item .name {
+            margin-bottom: 5px;
+            color: #666;
+        }
+        select, input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .value {
+            display: flex;
+            align-items: center;
+        }
+        .sub, .add {
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .sub:hover, .add:hover {
+            background-color: #ddd;
+        }
+        .num {
+            margin: 0 10px;
+            min-width: 30px;
+            text-align: center;
+        }
+        .radio {
+            display: inline-block;
+            margin-right: 5px;
+        }
+        label {
+            margin-right: 15px;
+        }
+        .order {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .total {
+            display: flex;
+            align-items: center;
+        }
+        .price {
+            margin-left: 10px;
+            font-weight: bold;
+            color: #f56c6c;
+        }
+        .place {
+            background-color: #0088cc;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .place:hover {
+            background-color: #0077bb;
+        }
+        a {
+            color: #0088cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .price-display {
+            padding: 5px 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div class="logo">圆</div>
+        <span class="title">圆狩精品账户</span>
+    </div>
+
+    <div class="merchant">
+        <div class="title">商户信息</div>
+        <div class="flex merchant">
+            <div class="name">商户名称</div>
+            <div class="info">圆狩精品账户</div>
+        </div>
+        <div class="flex service">
+            <div class="name">Telegram客服</div>
+            <a href="https://t.me/yuanshou666_bot" class="info">@yuanshou666_bot</a>
+        </div>
+    </div>
+
+    <div class="notice">
+        <div class="lf">
+            <div class="icon-notice">!</div>
+            <div class="gg">公告</div>
+        </div>
+        <div class="info">所有商品下单前请先少量购买测试，使用USDT收款，拍下之后通过邮箱自动发货，售后请联系Telegram客服。</div>
+    </div>
+
+    <div class="choose">
+        <div class="title">选择商品</div>
+        <div class="item">
+            <div class="name" required>商品分类</div>
+            <div class="value verify">
+                <select name="classify" id="classify" onchange="chooseClassify(this.value)">
+                    <option value="">请选择分类</option>
+                    <option value="weibo">微博产品</option>
+                    <option value="baidu">百度产品</option>
+                    <option value="soul">soul灵魂产品</option>
+                    <option value="xiaohongshu">小红书产品</option>
+                    <option value="zhenai">珍爱网实名号</option>
+                    <option value="momo">陌陌实名号</option>
+                    <option value="tantan">探探实名号</option>
+                    <option value="realname_service">代实名业务</option>
+                    <option value="kuaishou">快手产品</option>
+                    <option value="douyin">抖音产品</option>
+                    <option value="shijijiayuan">世纪佳缘实名号</option>
+                    <option value="dingtalk">钉钉实名账号</option>
+                    <option value="jd">京东账号</option>
+                    <option value="xianyu">闲鱼实名账号</option>
+                    <option value="alipay">支付宝业务</option>
+                    <option value="qq">QQ业务</option>
+                    <option value="wechat">微信业务</option>
+                    <option value="apple_id">苹果 ID</option>
+                    <option value="taobao">淘宝</option>
+                    <option value="pinduoduo">拼多多账号</option>
+                    <option value="yidui">伊对账号</option>
+                    <option value="wechat_qq_unblock">微信/QQ解封</option>
+                    <option value="douyin_kuaishou_xiaohongshu_unblock">抖音/快手/小红书解封</option>
+                    <option value="58tongcheng">58同城账号</option>
+                    <option value="zhuanzhuan">转转账号</option>
+                    <option value="taqu">他趣</option>
+                    <option value="vpn">vpn小火箭机场节点/clash节点</option>
+                </select>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name" required>商品名称</div>
+            <div class="value verify">
+                <select name="product" id="productName" onchange="chooseProduct(this.value)">
+                    <option value="">请先选择分类</option>
+                </select>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name" required>选择地区</div>
+            <div class="value verify">
+                <select name="region" id="region" onchange="chooseRegion(this.value)">
+                    <option value="">请先选择商品</option>
+                </select>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name">商品单价</div>
+            <div class="value">
+                <div class="price-display" id="unitPrice">-</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name">商品库存</div>
+            <div class="value">
+                <div class="sub" onclick="changeStock(-1)">-</div>
+                <div class="num" id="stock">-</div>
+                <div class="add" onclick="changeStock(1)">+</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name" required>购买数量</div>
+            <div class="value">
+                <div class="sub" onclick="changeNum(-1)">-</div>
+                <div class="num" id="quantity">1</div>
+                <div class="add" onclick="changeNum(1)">+</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="name">指定性别</div>
+            <div class="value">
+                <div class="radio">
+                    <input type="radio" name="sex" value="0" id="rng" checked />
+                </div>
+                <label for="rng">随机</label>
+                <div class="radio">
+                    <input type="radio" name="sex" value="1" class="radio" id="man" />
+                </div>
+                <label for="man">男</label>
+                <div class="radio">
+                    <input type="radio" name="sex" value="2" class="radio" id="women" />
+                </div>
+                <label for="women">女</label>
+            </div>
+        </div>
+        <div class="item email-item">
+            <div class="name" required>邮箱</div>
+            <div class="value">
+                <input type="email" class="email" id="emailEl" placeholder="下单后系统自动发送卡密到该邮箱" />
+            </div>
+        </div>
+
+        <div class="order">
+            <div class="total">
+                <div class="text">总金额</div>
+                <div class="price">
+                    <span class="num" id="total">0.00</span>
+                    USDT
+                </div>
+            </div>
+            <div class="place" onclick="goPay()">立即下单</div>
+        </div>
+    </div>
+
+    <script>
+        // 中国所有省份（包括港澳台）
+        const provinces = [
+            "北京市", "天津市", "河北省", "山西省", "内蒙古自治区",
+            "辽宁省", "吉林省", "黑龙江省", "上海市", "江苏省",
+            "浙江省", "安徽省", "福建省", "江西省", "山东省",
+            "河南省", "湖北省", "湖南省", "广东省", "广西壮族自治区",
+            "海南省", "重庆市", "四川省", "贵州省", "云南省",
+            "西藏自治区", "陕西省", "甘肃省", "青海省", "宁夏回族自治区",
+            "新疆维吾尔自治区", "香港特别行政区", "澳门特别行政区", "台湾省"
+        ];
+
+        // 生成80 - 150的随机库存数
+        function getRandomStock() {
+            return Math.floor(Math.random() * 71) + 80; // 80 - 150
+        }
+
+        // 商品数据 - 圆狩精品账户
+        const products = {
+            weibo: [
+                { name: "微博白号", basePrice: 2, stock: getRandomStock() },
+                { name: "微博--信用分510以上---6-9级老号", basePrice: 3.54, stock: getRandomStock() },
+                { name: "微博0-20级", basePrice: 2.2, stock: getRandomStock() },
+                { name: "黄V微博500粉", basePrice: 18, stock: getRandomStock() },
+                { name: "黄V微博2000粉", basePrice: 37.6, stock: getRandomStock() }
+            ],
+            baidu: [
+                { name: "百度贴吧手动号", basePrice: 2.1, stock: getRandomStock() },
+                { name: "软件专用号", basePrice: 1.8, stock: getRandomStock() },
+                { name: "百度网盘账号", basePrice: 2, stock: getRandomStock() },
+                { name: "百度网盘账号 VIP", basePrice: 3.5, stock: getRandomStock() },
+                { name: "百家号", basePrice: 6, stock: getRandomStock() }
+            ],
+            soul: [
+                { name: "soul灵魂白号", basePrice: 2, stock: getRandomStock() },
+                { name: "满月实名", basePrice: 4.3, stock: getRandomStock() },
+                { name: "半年实名", basePrice: 6.43, stock: getRandomStock() },
+                { name: "一年实名", basePrice: 9.14, stock: getRandomStock() }
+            ],
+            xiaohongshu: [
+                { name: "小红书白号", basePrice: 2, stock: getRandomStock() },
+                { name: "小红书实名号【7-15天】", basePrice: 8.3, stock: getRandomStock() },
+                { name: "小红书半年实名", basePrice: 13.34, stock: getRandomStock() },
+                { name: "小红书一年实名", basePrice: 16.22, stock: getRandomStock() },
+                { name: "小红书千粉实名", basePrice: 19, stock: getRandomStock() },
+                { name: "小红书万粉实名", basePrice: 25, stock: getRandomStock() }
+            ],
+            zhenai: [
+                { name: "珍爱白号", basePrice: 2, stock: getRandomStock() },
+                { name: "实名不带会员满月号", basePrice: 3.42, stock: getRandomStock() },
+                { name: "实名不带会员半年号", basePrice: 5.8, stock: getRandomStock() }
+            ],
+            momo: [
+                { name: "未实名05-09级【5-9月】", basePrice: 2, stock: getRandomStock() },
+                { name: "未实名10-12级【6-12月】", basePrice: 2.7, stock: getRandomStock() },
+                { name: "私人直登未实名20-29（8-9年）活跃", basePrice: 4.4, stock: getRandomStock() },
+                { name: "实名15-20级【6-12月】", basePrice: 4.8, stock: getRandomStock() },
+                { name: "实名20-29级【6-12月】", basePrice: 5.21, stock: getRandomStock() },
+                { name: "私人直登实名15-19级（8-9年）活跃", basePrice: 13, stock: getRandomStock() },
+                { name: "实名30-35级【1-5年】", basePrice: 13, stock: getRandomStock() }
+            ],
+            tantan: [
+                { name: "探探白号", basePrice: 2, stock: getRandomStock() },
+                { name: "满月实名号", basePrice: 10, stock: getRandomStock() },
+                { name: "半年实名号", basePrice: 15, stock: getRandomStock() },
+                { name: "一年实名号", basePrice: 20, stock: getRandomStock() },
+                { name: "两年实名号", basePrice: 27, stock: getRandomStock() },
+                { name: "探探实名号（带1个月会员）联系客服开通", basePrice: 13.2, stock: getRandomStock() }
+            ],
+            realname_service: [
+                { name: "各类账户统一价格", basePrice: 8, stock: getRandomStock() }
+            ],
+            kuaishou: [
+                { name: "快手白号", basePrice: 2, stock: getRandomStock() },
+                { name: "快手满月实名号", basePrice: 8.8, stock: getRandomStock() },
+                { name: "快手半年实名号", basePrice: 11.4, stock: getRandomStock() },
+                { name: "快手一年实名号", basePrice: 14, stock: getRandomStock() },
+                { name: "快手私人千粉号【真实粉丝】", basePrice: 18, stock: getRandomStock() }
+            ],
+            douyin: [
+                { name: "抖音白号【新注册3-7天】", basePrice: 2, stock: getRandomStock() },
+                { name: "满月实名号", basePrice: 9.2, stock: getRandomStock() },
+                { name: "半年实名号", basePrice: 13.4, stock: getRandomStock() },
+                { name: "一年实名号（等级1）", basePrice: 17, stock: getRandomStock() },
+                { name: "千粉私人号（等级2）", basePrice: 25, stock: getRandomStock() },
+                { name: "抖音苹果ID登录【实名号】", basePrice: 8.53, stock: getRandomStock() }
+            ],
+            shijijiayuan: [
+                { name: "世纪佳缘白号", basePrice: 2, stock: getRandomStock() },
+                { name: "满月带会员", basePrice: 4.93, stock: getRandomStock() },
+                { name: "半年带会员", basePrice: 6.73, stock: getRandomStock() },
+                { name: "一年带会员", basePrice: 8.88, stock: getRandomStock() }
+            ],
+            dingtalk: [
+                { name: "钉钉白号", basePrice: 2, stock: getRandomStock() },
+                { name: "满月双认证", basePrice: 15, stock: getRandomStock() },
+                { name: "半年双认证", basePrice: 20, stock: getRandomStock() },
+                { name: "一年双认证", basePrice: 28.88, stock: getRandomStock() }
+            ],
+            jd: [
+                { name: "京东账号新号", basePrice: 2, stock: getRandomStock() },
+                { name: "京东账号实名带支付密码", basePrice: 18.88, stock: getRandomStock() }
+            ],
+            xianyu: [
+                { name: "闲鱼白号【未实名】", basePrice: 3.43, stock: getRandomStock() },
+                { name: "闲鱼白号【已实名】", basePrice: 8.88, stock: getRandomStock() },
+                { name: "闲鱼白号【未实名】1-8年老号", basePrice: 5.21, stock: getRandomStock() },
+                { name: "闲鱼白号【已实名】1-8年老号", basePrice: 22.88, stock: getRandomStock() }
+            ],
+            alipay: [
+                { name: "直登V2老龄支付宝【永久使用永不找回】", basePrice: 5, stock: getRandomStock() },
+                { name: "直登V3老龄支付宝【永久使用永不找回】", basePrice: 5, stock: getRandomStock() },
+                { name: "个人V2环境号（稳如老狗/直接甩包给你）", basePrice: 6.78, stock: getRandomStock() },
+                { name: "企业产品主号号（面列表产品都可以代开）", basePrice: 23.69, stock: getRandomStock() },
+                { name: "企业支付宝主号", basePrice: 58.88, stock: getRandomStock() },
+                { name: "企业支付宝子号", basePrice: 13.42, stock: getRandomStock() }
+            ],
+            qq: [
+                { name: "QQ号出售【星星直登】（不可解封）", basePrice: 2, stock: getRandomStock() },
+                { name: "QQ号出售【月亮直登】（不可解封）", basePrice: 4, stock: getRandomStock() },
+                { name: "QQ号出售【单太直登】（不可解封）", basePrice: 8.88, stock: getRandomStock() },
+                { name: "纯私人单太QQ直登可改绑", basePrice: 12.67, stock: getRandomStock() },
+                { name: "纯私人双太QQ直登可改绑", basePrice: 18.88, stock: getRandomStock() },
+                { name: "纯私人三太QQ直登可改绑", basePrice: 30, stock: getRandomStock() },
+                { name: "QQ靓号", basePrice: 5, stock: getRandomStock() },
+                { name: "纯私人9位皇冠QQ直登可改绑", basePrice: 38.88, stock: getRandomStock() },
+                { name: "企业QQ（每工号）", basePrice: 188, stock: getRandomStock() }
+            ],
+            wechat: [
+                { name: "8-15天手工精养实名绑卡带支付", basePrice: 15, stock: getRandomStock() },
+                { name: "满月手工精养实名带支付", basePrice: 25, stock: getRandomStock() },
+                { name: "私人3月号带实名带账单带圈带支付", basePrice: 30, stock: getRandomStock() },
+                { name: "私人半年号带实名带账单带圈带支付", basePrice: 35, stock: getRandomStock() },
+                { name: "私人一年号带实名带账单带圈带支付", basePrice: 38.88, stock: getRandomStock() },
+                { name: "私人两年号带实名带账单带圈带支付", basePrice: 45.43, stock: getRandomStock() },
+                { name: "私人三年号带实名带账单带圈带支付", basePrice: 51.63, stock: getRandomStock() },
+                { name: "私人四年号带实名带账单带圈带支付", basePrice: 58.88, stock: getRandomStock() }
+            ],
+            apple_id: [
+                { name: "苹果ID老号未注册im短信", basePrice: 16.58, stock: getRandomStock() },
+                { name: "苹果ID老号已注册im短信(实测可做IM项目）", basePrice: 28.88, stock: getRandomStock() }
+            ],
+            taobao: [
+                { name: "淘宝白号（用于刷单）", basePrice: 2.88, stock: getRandomStock() },
+                { name: "淘宝卖家账号1心店铺", basePrice: 11.78, stock: getRandomStock() },
+                { name: "淘宝卖家账号3心店铺", basePrice: 15, stock: getRandomStock() },
+                { name: "淘宝卖家账号1钻石店铺", basePrice: 30, stock: getRandomStock() },
+                { name: "淘宝买家号3钻", basePrice: 50, stock: getRandomStock() },
+                { name: "淘宝买家号5钻", basePrice: 88.88, stock: getRandomStock() }
+            ],
+            pinduoduo: [
+                { name: "拼多多买家号", basePrice: 2, stock: getRandomStock() },
+                { name: "拼多多实名老号", basePrice: 3.88, stock: getRandomStock() }
+            ],
+            yidui: [
+                { name: "伊对白号", basePrice: 2, stock: getRandomStock() },
+                { name: "伊对实名号【7-15天】", basePrice: 9.43, stock: getRandomStock() },
+                { name: "伊对实名号【满月号】（用于打粉）", basePrice: 12.88, stock: getRandomStock() },
+                { name: "伊对实名号【3-6个月号】", basePrice: 14.54, stock: getRandomStock() }
+            ],
+            wechat_qq_unblock: [
+                { name: "微信解封（购买后联系客服）", basePrice: 10, stock: getRandomStock() },
+                { name: "QQ解封（购买后联系客服）", basePrice: 8.88, stock: getRandomStock() }
+            ],
+            douyin_kuaishou_xiaohongshu_unblock: [
+                { name: "抖音解封（购买后联系客服）", basePrice: 12, stock: getRandomStock() },
+                { name: "快手解封（购买后联系客服）", basePrice: 7.53, stock: getRandomStock() },
+                { name: "小红书解封（购买后联系客服）", basePrice: 6.82, stock: getRandomStock() }
+            ],
+            "58tongcheng": [
+                { name: "58同城新号", basePrice: 2, stock: getRandomStock() },
+                { name: "58同城实名认证", basePrice: 8.68, stock: getRandomStock() },
+                { name: "58企业认证号", basePrice: 38.88, stock: getRandomStock() }
+            ],
+            zhuanzhuan: [
+                { name: "未实名白号", basePrice: 2, stock: getRandomStock() },
+                { name: "已实名满月号", basePrice: 8.59, stock: getRandomStock() },
+                { name: "转转已实名半年号", basePrice: 13.3, stock: getRandomStock() }
+            ],
+            taqu: [
+                { name: "他趣新号", basePrice: 2, stock: getRandomStock() },
+                { name: "他趣半年老号", basePrice: 8.88, stock: getRandomStock() }
+            ],
+            vpn: [
+                { name: "香港节点（50G）一个月", basePrice: 2, stock: getRandomStock() },
+                { name: "台湾节点（50G）一个月", basePrice: 2.21, stock: getRandomStock() },
+                { name: "日本节点（50G）一个月", basePrice: 3.41, stock: getRandomStock() },
+                { name: "新加坡节点（50G）一个月", basePrice: 2.96, stock: getRandomStock() },
+                { name: "美国节点（50G）一个月", basePrice: 4.43, stock: getRandomStock() },
+                { name: "英国节点（50G）一个月", basePrice: 3.64, stock: getRandomStock() },
+                { name: "土耳其节点（50G）一个月", basePrice: 2.31, stock: getRandomStock() },
+                { name: "巴西节点（50G）一个月", basePrice: 2.42, stock: getRandomStock() }
+            ]
+        };
+
+        // 当前选择的商品和地区
+        let currentProduct = null;
+        let currentRegion = null;
+
+        // 选择分类
+        function chooseClassify(value) {
+            const productSelect = document.getElementById('productName');
+            productSelect.innerHTML = '<option value="">请选择商品</option>';
+
+            if (!value) return;
+
+            products[value].forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.name;
+                option.textContent = product.name;
+                productSelect.appendChild(option);
+            });
+
+            // 重置其他选项
+            document.getElementById('region').innerHTML = '<option value="">请先选择商品</option>';
+            document.getElementById('unitPrice').textContent = '-';
+            document.getElementById('stock').textContent = '-';
+            document.getElementById('total').textContent = '0.00';
+            currentProduct = null;
+            currentRegion = null;
+        }
+
+        // 选择商品
+        function chooseProduct(value) {
+            const classify = document.getElementById('classify').value;
+            const regionSelect = document.getElementById('region');
+            regionSelect.innerHTML = '<option value="">请选择地区</option>';
+
+            if (!value || !classify) return;
+
+            // 查找选中的商品
+            currentProduct = products[classify].find(p => p.name === value);
+            if (!currentProduct) return;
+
+            // 更新地区选项
+            provinces.forEach(region => {
+                const option = document.createElement('option');
+                option.value = region;
+                option.textContent = region;
+                regionSelect.appendChild(option);
+            });
+
+            document.getElementById('stock').textContent = currentProduct.stock;
+            document.getElementById('unitPrice').textContent = currentProduct.basePrice.toFixed(2) + ' USDT';
+            updateTotal();
+        }
+
+        // 选择地区
+        function chooseRegion(value) {
+            currentRegion = value;
+            if (currentProduct) {
+                document.getElementById('unitPrice').textContent = currentProduct.basePrice.toFixed(2) + ' USDT';
+            }
+            updateTotal();
+        }
+
+        // 改变数量
+        function changeNum(delta) {
+            const quantityEl = document.getElementById('quantity');
+            let quantity = parseInt(quantityEl.textContent) || 0;
+            quantity += delta;
+            if (quantity < 1) quantity = 1;
+            if (currentProduct && quantity > currentProduct.stock) {
+                quantity = currentProduct.stock;
+                alert('不能超过库存数量');
+            }
+            quantityEl.textContent = quantity;
+            updateTotal();
+        }
+
+        // 改变库存 (演示用)
+        function changeStock(delta) {
+            if (!currentProduct) return;
+            currentProduct.stock += delta;
+            if (currentProduct.stock < 0) currentProduct.stock = 0;
+            document.getElementById('stock').textContent = currentProduct.stock;
+
+            // 如果当前数量超过新库存，调整数量
+            const quantity = parseInt(document.getElementById('quantity').textContent) || 0;
+            if (quantity > currentProduct.stock) {
+                document.getElementById('quantity').textContent = currentProduct.stock;
+                updateTotal();
+            }
+        }
+
+        // 更新总金额
+        function updateTotal() {
+            if (!currentProduct) {
+                document.getElementById('total').textContent = '0.00';
+                return;
+            }
+
+            const quantity = parseInt(document.getElementById('quantity').textContent) || 0;
+            const total = (currentProduct.basePrice * quantity).toFixed(2);
+            document.getElementById('total').textContent = total;
+        }
+
+        // 去支付 - 修改后的函数，添加URL参数并跳转到指定链接
+        function goPay() {
+            const email = document.getElementById('emailEl').value;
+            if (!email ||!email.includes('@')) {
+                alert('请输入有效的邮箱地址');
+                return;
+            }
+
+            if (!currentProduct) {
+                alert('请选择商品');
+                return;
+            }
+
+            if (!currentRegion) {
+                alert('请选择地区');
+                return;
+            }
+
+            const quantity = document.getElementById('quantity').textContent;
+            const total = document.getElementById('total').textContent;
+            const sex = document.querySelector('input[name="sex"]:checked').value;
+            const sexText = getSexText(sex);
+
+            // 构建URL参数
+            const params = new URLSearchParams();
+            params.append('product', encodeURIComponent(currentProduct.name));
+            params.append('region', encodeURIComponent(currentRegion));
+            params.append('quantity', quantity);
+            params.append('price', currentProduct.basePrice.toFixed(2));
+            params.append('total', total);
+            params.append('email', encodeURIComponent(email));
+            params.append('sex', sex);
+
+            // 跳转到指定链接并带上参数
+            const targetUrl = 'https://r22g421.github.io/tgweb/tgweb1.html?' + params.toString();
+            window.location.href = targetUrl;
+        }
+
+        function getSexText(sex) {
+            switch (sex) {
+                case '0':
+                    return '随机';
+                case '1':
+                    return '男';
+                case '2':
+                    return '女';
+                default:
+                    return '未知';
+            }
+        }
+    </script>
+</body>
+</html>    
